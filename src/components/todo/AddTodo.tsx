@@ -1,26 +1,35 @@
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
-import { ChangeEvent } from "react"
+import { ChangeEvent,FormEvent} from "react"
 import { useState } from "react"
+import { useTodoContext } from "../store/TodoContext"
 
 const AddTodo = () => {
    const[todo, setTodo] = useState("") 
+   const {handleTodo} = useTodoContext()!;
 
-   const handleAddTodo = () => {
-      console.log("Add todo", todo)
+   const handleAddTodo = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      handleTodo (todo);
+      setTodo ("");
    }
+  
+  
 
    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
       setTodo (event.target.value)
-      
    }
+
+
 
   return (
       <>
-      <div className="flex gap-2 " >
+      
+         <form onSubmit={handleAddTodo} className="flex gap-2 ">
          <Input placeholder = "Add a new todo" value={todo} type="text" onChange={handleInputChange} />
-         <Button variant= "default"  onSubmit={handleAddTodo} >Add</Button>
-      </div>
+         <Button variant= "default" type = "submit" >Add</Button>
+         </form>
+   
       </>
   )
 }
