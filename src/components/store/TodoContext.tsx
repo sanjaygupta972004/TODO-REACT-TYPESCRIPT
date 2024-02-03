@@ -1,7 +1,7 @@
 
 import {createContext,useContext,useState} from 'react';
 
-type Todo = {
+export type Todo = {
       id: string;
       title: string;
       completed: boolean;
@@ -11,12 +11,10 @@ type Todo = {
 
 export type TodoContextProps = {
       todos: Todo[];
+      setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
       handleTodo: (id: string) => void;
       handlerToggleTode: (id: string) => void;
       handleDelete: (id: string) => void;
-      // editTodo: (id: string, title: string) => void;
-      // clearTodos: () => void;
-
 }
 
 const TodoContext = createContext<TodoContextProps | null>(null);
@@ -30,6 +28,7 @@ type ChildrenProps = {
 export const TodoProvider = ({children}: ChildrenProps) => {
 
       const[todos, setTodos] = useState<Todo[]>([]);
+ 
 
       const handleTodo = (task:string) => {
             const newTodo : Todo[] =  [
@@ -72,10 +71,11 @@ export const TodoProvider = ({children}: ChildrenProps) => {
             })
 
           }  
-
+  
+       
 
       return (
-         <TodoContext.Provider value={{todos,handleTodo,handlerToggleTode, handleDelete}}>
+         <TodoContext.Provider value={{todos,handleTodo,handlerToggleTode, handleDelete,setTodos}}>
                {children}
          </TodoContext.Provider>
       )

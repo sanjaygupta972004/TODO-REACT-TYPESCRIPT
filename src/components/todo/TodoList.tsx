@@ -19,15 +19,15 @@ const TodoList = () => {
                       <input type="checkbox" id={`todo-${todo.id }`} className="h-5 w-5" checked={todo.completed}
                          onChange={()=>handlerToggleTode(todo.id)} />
                    </div>
-                     <div className="w-[10%] lg:w-[5%] text-xl hover:bg-red-800 rounded-sm hover:text-white">
+                     <div className="bg-pink-200 rounded-[10px]">
                          {
-                           todo.completed && <button type = "submit" onClick= {()=>handleDelete(todo.id)} >Delete</button>
+                           todo.completed && <button className="text-xl hover:bg-red-800 hover:text-white rounded-[10px] font-senserif" type = "submit" onClick= {()=>handleDelete(todo.id)} >Delete</button>
                          }
  
                       </div>
                </div>
             )
-         })
+         }) 
       }
     </>
   )

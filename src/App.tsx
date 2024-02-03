@@ -5,7 +5,7 @@
  import TodoLayout from "./components/todo/TodoLayout";
  import TodoList from "./components/todo/TodoList";
  import Complete from "./components/todo/Complete";
- import Delete from "./components/todo/Delete";
+ import Active from "./components/todo/Active";
 
 
  import { Routes,Route } from "react-router-dom";
@@ -27,7 +27,7 @@ function App() {
         <Route path = "/" element = {<TodoLayout />}>
          <Route path = "all" element = {<TodoList/>} />
           <Route path = "complete" element = {<Complete/>} />
-          <Route path = "delete" element = {<Delete/>} />
+          <Route path = "active" element = {<Active/>} />
   
          </Route>
       </Routes>
