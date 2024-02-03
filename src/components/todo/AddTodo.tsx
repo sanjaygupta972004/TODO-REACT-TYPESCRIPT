@@ -2,11 +2,11 @@ import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import { ChangeEvent,FormEvent} from "react"
 import { useState } from "react"
-import { useTodoContext } from "../store/TodoContext"
+import { useTodoContext,TodoContextProps } from "../store/TodoContext"
 
 const AddTodo = () => {
    const[todo, setTodo] = useState("") 
-   const {handleTodo} = useTodoContext()!;
+   const {handleTodo} = useTodoContext() as TodoContextProps;
 
    const handleAddTodo = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -15,11 +15,9 @@ const AddTodo = () => {
    }
   
   
-
    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
       setTodo (event.target.value)
    }
-
 
 
   return (

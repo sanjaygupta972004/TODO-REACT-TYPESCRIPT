@@ -1,12 +1,18 @@
 
- import AddTodo from "./components/todo/AddTodo"
+ import AddTodo from "./components/todo/AddTodo";
  import { FaBookOpen } from "react-icons/fa";
  import { CiBookmark } from "react-icons/ci";
+ import TodoLayout from "./components/todo/TodoLayout";
+ import TodoList from "./components/todo/TodoList";
+ import Complete from "./components/todo/Complete";
+ import Delete from "./components/todo/Delete";
+
+
+ import { Routes,Route } from "react-router-dom";
 
 
 function App() {
  
-
   return (
     <> 
     <div className="container mt-20 p-4 " >
@@ -17,6 +23,16 @@ function App() {
           <CiBookmark className="text-3xl font-bold text-center mt-1"/>
        </div>
       <AddTodo />
+      <Routes>
+        <Route path = "/" element = {<TodoLayout />}>
+         <Route path = "all" element = {<TodoList/>} />
+          <Route path = "complete" element = {<Complete/>} />
+          <Route path = "delete" element = {<Delete/>} />
+  
+         </Route>
+      </Routes>
+       
+    
 
       </div>
     </div>

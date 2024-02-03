@@ -4,11 +4,15 @@ import App from './App.tsx'
 import './index.css'
 
 import { TodoProvider } from './components/store/TodoContext.tsx'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <TodoProvider>
   <React.StrictMode>
-    <App />
+   <BrowserRouter>
+    <TodoProvider>
+     <App />
+    </TodoProvider>
+    </BrowserRouter>
   </React.StrictMode>
-  </TodoProvider>
+
 )

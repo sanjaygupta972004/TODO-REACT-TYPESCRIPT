@@ -1,3 +1,4 @@
+
 import {createContext,useContext,useState} from 'react';
 
 type Todo = {
@@ -8,10 +9,11 @@ type Todo = {
 }
 
 
-type TodoContextProps = {
+export type TodoContextProps = {
       todos: Todo[];
       handleTodo: (id: string) => void;
-      // toggleTodo: (id: string) => void;
+      handlerToggleTode: (id: string) => void;
+      handleDelete: (id: string) => void;
       // editTodo: (id: string, title: string) => void;
       // clearTodos: () => void;
 
@@ -44,10 +46,36 @@ export const TodoProvider = ({children}: ChildrenProps) => {
 
       }
 
-      console.log(todos);
+      const handlerToggleTode = (id: string) => {
+            const newTodos = todos.map((todo) => {
+                  if(todo.id === id) {
+                        return {
+                              ...todo,
+                              completed: !todo.completed
+                        }
+                  }
+                  return todo;
+            });
+
+            setTodos(newTodos);
+        
+      }
+
+      const handleDelete = (id: string) => {
+            todos.map((todo) => {
+                if(todo.id === id) {
+                   const newTodos = todos.filter((todo) => todo.id !== id);
+                        setTodos(newTodos);
+                      return newTodos;
+                }
+                return todo;
+            })
+
+          }  
+
 
       return (
-         <TodoContext.Provider value={{todos,handleTodo}}>
+         <TodoContext.Provider value={{todos,handleTodo,handlerToggleTode, handleDelete}}>
                {children}
          </TodoContext.Provider>
       )
