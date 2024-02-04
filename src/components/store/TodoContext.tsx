@@ -28,15 +28,15 @@ type ChildrenProps = {
 export const TodoProvider = ({children}: ChildrenProps) => {
 
       const[todos, setTodos] = useState<Todo[]>([]);
- 
+
 
       const handleTodo = (task:string) => {
             const newTodo : Todo[] =  [
-                       {
-                         id: Math.random().toString(),
-                         title: task,
-                         completed: false,
-                         createdAt: new Date()
+                        {
+                        id: Math.random().toString(),
+                        title: task,
+                        completed: false,
+                        createdAt: new Date()
                         }];
 
                         setTodos((prevTodos) => [...prevTodos, ...newTodo]);
@@ -57,27 +57,31 @@ export const TodoProvider = ({children}: ChildrenProps) => {
             });
 
             setTodos(newTodos);
-        
+
       }
 
       const handleDelete = (id: string) => {
             todos.map((todo) => {
-                if(todo.id === id) {
-                   const newTodos = todos.filter((todo) => todo.id !== id);
+            if(todo.id === id) {
+                  const newTodos = todos.filter((todo) => todo.id !== id);
                         setTodos(newTodos);
-                      return newTodos;
-                }
-                return todo;
+                  return newTodos;
+            }
+            return todo;
             })
 
-          }  
-  
-       
+      }  
+
+      
 
       return (
-         <TodoContext.Provider value={{todos,handleTodo,handlerToggleTode, handleDelete,setTodos}}>
-               {children}
-         </TodoContext.Provider>
+      <TodoContext.Provider value={
+            {
+                  todos,handleTodo,handlerToggleTode, handleDelete,setTodos,
+            }
+            }>
+            {children}
+      </TodoContext.Provider>
       )
 }
 
