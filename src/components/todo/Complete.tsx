@@ -34,7 +34,7 @@ const handlerCompleteDelete = () => {
     <div className="mt-4">
         <h1 className="text-3xl font-serif font-medium text-center text-gray-600 underline">Completed Tasks</h1>  
     </div>
-    <div className="mt-4 font-sans text-xl capitalize underline  text-red-700  ">
+    <div className="mt-4 font-sans text-xl capitalize line-through  text-red-700  ">
       {
         complete.map((todo) => {
           return (
