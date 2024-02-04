@@ -6,6 +6,7 @@
  import TodoList from "./components/todo/TodoList";
  import Complete from "./components/todo/Complete";
  import Active from "./components/todo/Active";
+ import Error from "./components/Error";
 
 
  import { Routes,Route } from "react-router-dom";
@@ -21,17 +22,18 @@ function App() {
           <FaBookOpen  className="text-2xl font-bold text-center mt-1"/>
           <h1 className="text-2xl font-bold text-center text-gray-600">TODO-REACT-TYPESCRIPT</h1>
           <CiBookmark className="text-2xl font-bold text-center mt-1"/>
-       </div>
+        </div>
       <AddTodo />
       <Routes>
         <Route path = "/" element = {<TodoLayout />}>
-         <Route path = "all" element = {<TodoList/>} />
+          <Route path = "*" element = {<Error />} />
+          <Route path = "all" element = {<TodoList/>} />
           <Route path = "complete" element = {<Complete/>} />
           <Route path = "active" element = {<Active/>} />
-  
-         </Route>
+    
+          </Route>
       </Routes>
-       
+        
       </div>
     </div>
     </>
