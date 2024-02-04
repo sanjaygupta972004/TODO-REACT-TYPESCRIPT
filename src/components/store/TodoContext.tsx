@@ -27,7 +27,16 @@ type ChildrenProps = {
 
 export const TodoProvider = ({children}: ChildrenProps) => {
 
-      const[todos, setTodos] = useState<Todo[]>([]);
+      const[todos, setTodos] = useState<Todo[]>(() => {
+          try {
+            const saved = localStorage.getItem('todos') || '[]';
+            const initialValue = JSON.parse(saved || '[]') as Todo[];
+            return initialValue;
+            
+          } catch (error) {
+            return [];
+          }
+      });
 
 
       const handleTodo = (task:string) => {
@@ -39,7 +48,11 @@ export const TodoProvider = ({children}: ChildrenProps) => {
                         createdAt: new Date()
                         }];
 
+                        localStorage.setItem('todos', JSON.stringify([...todos, ...newTodo]));
+
                         setTodos((prevTodos) => [...prevTodos, ...newTodo]);
+                        
+                  
 
                         return newTodo;
 
