@@ -10,6 +10,7 @@ const AddTodo = () => {
 
    const handleAddTodo = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      if(!todo) return "Please add a todo";
       handleTodo (todo);
       setTodo ("");
    }

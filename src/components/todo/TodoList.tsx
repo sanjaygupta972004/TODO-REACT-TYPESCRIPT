@@ -8,7 +8,7 @@ import { useTodoContext,TodoContextProps } from "../store/TodoContext"
   return (
     <>
       {
-        todos.length === 0 ? <h1 className="text-2xl mt-4 font-bold font-mono text-center text-orange-600 underline">No Any Task</h1> :
+        todos.length === 0 ? <h1 className="text-2xl mt-4 font-bold font-mono text-center text-orange-600 underline">No Tasks</h1> :
         todos.map((todo) => {
           return (
             <div key={todo.id} className = "mt-3 flex space-x-20 w-full pr-1">
